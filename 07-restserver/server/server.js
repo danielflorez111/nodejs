@@ -12,7 +12,6 @@ app.use(require('./routes/usuario'));
 mongoose.connect('mongodb://localhost:27017/cafe', (err, res) => {
     if (err) throw err;
     console.log('Base de datos online');
-
 });
 
 app.listen(process.env.PORT, () => {
