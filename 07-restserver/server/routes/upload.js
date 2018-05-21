@@ -67,7 +67,12 @@ app.put('/upload/:tipo/:id', (req, res) => {
             });
 
         // Aqui, imagen cargada
-        imagenUsuario(id, res, nombreArchivo);
+        if (tipo === 'usuarios') {
+            imagenUsuario(id, res, nombreArchivo);
+        } else {
+            imagenProducto(id, res, nombreArchivo);
+        }
+        
     });
 
 });
@@ -138,7 +143,7 @@ function imagenProducto(id, res, nombreArchivo) {
         productoDB.save((err, productoDB) => {
             res.json({
                 ok: true,
-                pro: usuarioDB,
+                producto: productoDB,
                 img: nombreArchivo
             })
         });
