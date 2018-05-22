@@ -16,7 +16,7 @@ class Usuarios {
         return persona;
     }
 
-    gerPersonas() {
+    getPersonas() {
         return this.personas;
     }
 
