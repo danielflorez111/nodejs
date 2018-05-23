@@ -33,10 +33,13 @@ io.on('connection', (client) => {
     // Cuando un usuario se desconecta
     client.on('disconnect', () => {
         let personaBorrada = usuarios.borrarPersona(client.id);
-
         client.broadcast.emit('crearMensaje', crearMensaje('Administrador', `${personaBorrada.nombre} abandonó el chat`));
-
         client.broadcast.emit('listaPersonas', usuarios.getPersonas());
+    });
+
+    client.on('mensajePrivado', (data) => {
+        let persona = usuarios.getPersona(client.id);
+        client.broadcast.to(data.para).emit('mensajePrivado', crearMensaje(persona.nombre, data.mensaje));
     });
 
 });
